@@ -1,4 +1,4 @@
-package by.latushko.training.entity;
+package by.latushko.training.warehouse;
 
 public class RectangleProperties {
     private double square;

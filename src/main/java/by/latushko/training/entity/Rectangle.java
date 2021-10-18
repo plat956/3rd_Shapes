@@ -1,12 +1,19 @@
 package by.latushko.training.entity;
 
+import by.latushko.training.observer.Observable;
+import by.latushko.training.observer.RectangleEvent;
+import by.latushko.training.observer.RectangleObserver;
 import by.latushko.training.util.IdGenerator;
 
-public class Rectangle {
+import java.util.HashSet;
+import java.util.Set;
+
+public class Rectangle implements Observable {
     private long rectangleId;
     private Point startingPoint;
     private double width;
     private double height;
+    private final Set<RectangleObserver> observers = new HashSet<>();
 
     {
         rectangleId = IdGenerator.generateId();
@@ -40,6 +47,7 @@ public class Rectangle {
 
     public void setWidth(double width) {
         this.width = width;
+        notifyObservers();
     }
 
     public double getHeight() {
@@ -48,6 +56,7 @@ public class Rectangle {
 
     public void setHeight(double height) {
         this.height = height;
+        notifyObservers();
     }
 
     @Override
@@ -85,5 +94,26 @@ public class Rectangle {
         sb.append(", height=").append(height);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public void attach(RectangleObserver observer) {
+        if(observer != null) {
+            observers.add(observer);
+        }
+    }
+
+    @Override
+    public void detach(RectangleObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        if(observers.isEmpty()) {
+            return;
+        }
+        RectangleEvent event = new RectangleEvent(this);
+        observers.forEach(o -> o.parameterChange(event));
     }
 }
