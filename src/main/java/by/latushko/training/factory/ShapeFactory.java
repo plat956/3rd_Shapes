@@ -10,7 +10,8 @@ public class ShapeFactory {
     private static final short WIDTH_INDEX = 0;
     private static final short HEIGHT_INDEX = 1;
 
-    private ShapeFactory() {}
+    private ShapeFactory() {
+    }
 
     public static Rectangle createRectangle(Pair<Integer[], Double[]> parameters) {
         Integer[] startingPointData = parameters.getKey();
