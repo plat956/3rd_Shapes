@@ -1,5 +1,6 @@
 package by.latushko.training;
 
+import by.latushko.training.entity.Point;
 import by.latushko.training.entity.Rectangle;
 import by.latushko.training.exception.InputFileReadException;
 import by.latushko.training.exception.RectangleParseException;
@@ -25,7 +26,7 @@ public class Main {
         RectangleParametersParser parametersParser = new RectangleParametersParserImpl();
         for(String s: qwe) {
             ParameterPair data = parametersParser.parseParameters(s);
-            Rectangle rectangle = ShapeFactory.createRectangle(data);
+            Rectangle rectangle = new Rectangle(new Point(4, 6), 5, 10);
 
             RectangleWarehouse rectangleWarehouse = RectangleWarehouse.getInstance();
             rectangleWarehouse.putProperties(rectangle.getRectangleId(), 10, 10);
