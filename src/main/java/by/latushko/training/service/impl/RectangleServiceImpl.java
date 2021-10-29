@@ -3,8 +3,11 @@ package by.latushko.training.service.impl;
 import by.latushko.training.entity.Point;
 import by.latushko.training.entity.Rectangle;
 import by.latushko.training.service.RectangleService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class RectangleServiceImpl implements RectangleService {
+    private static final Logger logger = LogManager.getLogger();
     @Override
     public boolean isSquare(Rectangle rectangle) {
         return rectangle.getWidth() == rectangle.getHeight();
@@ -26,14 +29,20 @@ public class RectangleServiceImpl implements RectangleService {
     public double calculateSquare(Rectangle rectangle) {
         double width = rectangle.getWidth();
         double height = rectangle.getHeight();
-        return width * height;
+        double result = width * height;
+
+        logger.info("Square of the rectangle {} is {}", rectangle.getRectangleId(), result);
+        return result;
     }
 
     @Override
     public double calculatePerimeter(Rectangle rectangle) {
         double width = rectangle.getWidth();
         double height = rectangle.getHeight();
-        return 2 * (width + height);
+        double result = 2 * (width + height);
+
+        logger.info("Perimeter of the rectangle {} is {}", rectangle.getRectangleId(), result);
+        return result;
     }
 
     private boolean isPointsAtTheSameLine(Point firstPoint, Point secondPoint, Point thirdPoint) {

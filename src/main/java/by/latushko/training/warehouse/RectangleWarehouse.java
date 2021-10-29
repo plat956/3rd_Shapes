@@ -1,10 +1,14 @@
 package by.latushko.training.warehouse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class RectangleWarehouse {
+    private static final Logger logger = LogManager.getLogger();
     private static RectangleWarehouse instance;
     private final Map<Long, RectangleProperties> storage;
 
@@ -26,6 +30,7 @@ public class RectangleWarehouse {
 
     public void putProperties(Long rectangleId, RectangleProperties properties) {
         storage.put(rectangleId, properties);
+        logger.info("Properties successfully added for {}", rectangleId);
     }
 
     public Optional<RectangleProperties> getProperties(Long rectangleId) {
@@ -37,8 +42,10 @@ public class RectangleWarehouse {
             RectangleProperties properties = storage.get(rectangleId);
             properties.setSquare(square);
             properties.setPerimeter(perimeter);
+            logger.info("Properties successfully updated for {}", rectangleId);
             return true;
         } else {
+            logger.error("Rectangle {} doesn't exist in storage", rectangleId);
             return false;
         }
     }
