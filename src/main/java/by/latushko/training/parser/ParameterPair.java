@@ -1,27 +1,29 @@
-package by.latushko.training.util;
+package by.latushko.training.parser;
 
-public class Pair<K, V> {
-    private K key;
-    private V value;
+import java.util.Arrays;
 
-    public Pair(K key, V value) {
+public class ParameterPair {
+    private Integer[] key;
+    private Double[] value;
+
+    public ParameterPair(Integer[] key, Double[] value) {
         this.key = key;
         this.value = value;
     }
 
-    public K getKey() {
+    public Integer[] getKey() {
         return key;
     }
 
-    public void setKey(K key) {
+    public void setKey(Integer[] key) {
         this.key = key;
     }
 
-    public V getValue() {
+    public Double[] getValue() {
         return value;
     }
 
-    public void setValue(V value) {
+    public void setValue(Double[] value) {
         this.value = value;
     }
 
@@ -30,16 +32,16 @@ public class Pair<K, V> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Pair<?, ?> pair = (Pair<?, ?>) o;
+        ParameterPair parameterPair = (ParameterPair) o;
 
-        if (key != null ? !key.equals(pair.key) : pair.key != null) return false;
-        return value != null ? value.equals(pair.value) : pair.value == null;
+        if (!Arrays.equals(key, parameterPair.key)) return false;
+        return Arrays.equals(value, parameterPair.value);
     }
 
     @Override
     public int hashCode() {
-        int result = key != null ? key.hashCode() : 0;
-        result = 31 * result + (value != null ? value.hashCode() : 0);
+        int result = Arrays.hashCode(key);
+        result = 31 * result + Arrays.hashCode(value);
         return result;
     }
 

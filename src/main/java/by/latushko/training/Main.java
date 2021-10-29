@@ -12,7 +12,7 @@ import by.latushko.training.reader.DataReader;
 import by.latushko.training.reader.impl.DataReaderImpl;
 import by.latushko.training.repository.RectangleRepository;
 import by.latushko.training.repository.impl.IdSpecification;
-import by.latushko.training.util.Pair;
+import by.latushko.training.parser.ParameterPair;
 import by.latushko.training.warehouse.RectangleWarehouse;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class Main {
 
         RectangleParametersParser parametersParser = new RectangleParametersParserImpl();
         for(String s: qwe) {
-            Pair<Integer[], Double[]> data = parametersParser.parseParameters(s);
+            ParameterPair data = parametersParser.parseParameters(s);
             Rectangle rectangle = ShapeFactory.createRectangle(data);
 
             RectangleWarehouse rectangleWarehouse = RectangleWarehouse.getInstance();

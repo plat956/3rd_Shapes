@@ -2,7 +2,7 @@ package by.latushko.training.factory;
 
 import by.latushko.training.entity.Point;
 import by.latushko.training.entity.Rectangle;
-import by.latushko.training.util.Pair;
+import by.latushko.training.parser.ParameterPair;
 
 public class ShapeFactory {
     private static final short STARTING_POINT_START_INDEX = 0;
@@ -13,7 +13,7 @@ public class ShapeFactory {
     private ShapeFactory() {
     }
 
-    public static Rectangle createRectangle(Pair<Integer[], Double[]> parameters) {
+    public static Rectangle createRectangle(ParameterPair parameters) {
         Integer[] startingPointData = parameters.getKey();
         Double[] additionalParametersData = parameters.getValue();
 

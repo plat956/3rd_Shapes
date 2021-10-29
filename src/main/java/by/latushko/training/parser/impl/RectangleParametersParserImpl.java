@@ -2,7 +2,7 @@ package by.latushko.training.parser.impl;
 
 import by.latushko.training.exception.RectangleParseException;
 import by.latushko.training.parser.RectangleParametersParser;
-import by.latushko.training.util.Pair;
+import by.latushko.training.parser.ParameterPair;
 import by.latushko.training.validator.RectangleInputValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +19,7 @@ public class RectangleParametersParserImpl implements RectangleParametersParser 
     private static final short HEIGHT_INDEX = 2;
 
     @Override
-    public Pair<Integer[], Double[]> parseParameters(String unCasted) throws RectangleParseException {
+    public ParameterPair parseParameters(String unCasted) throws RectangleParseException {
         RectangleInputValidator rectangleInputValidator = new RectangleInputValidator();
         if(!rectangleInputValidator.validate(unCasted)) {
             logger.error("Line \"{}\" contains invalid characters for Rectangle casting", unCasted);
@@ -34,6 +34,6 @@ public class RectangleParametersParserImpl implements RectangleParametersParser 
         Double height = Double.valueOf(tempData[HEIGHT_INDEX]);
         Double[] additionalData = new Double[]{width, height};
 
-        return new Pair<>(startingPointData, additionalData);
+        return new ParameterPair(startingPointData, additionalData);
     }
 }
