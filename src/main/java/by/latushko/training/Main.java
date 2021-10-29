@@ -13,11 +13,9 @@ import by.latushko.training.reader.impl.DataReaderImpl;
 import by.latushko.training.repository.RectangleRepository;
 import by.latushko.training.repository.impl.IdSpecification;
 import by.latushko.training.util.Pair;
-import by.latushko.training.warehouse.RectangleProperties;
-import by.latushko.training.warehouse.Warehouse;
+import by.latushko.training.warehouse.RectangleWarehouse;
 
 import java.util.List;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws InputFileReadException, RectangleParseException {
@@ -29,8 +27,8 @@ public class Main {
             Pair<Integer[], Double[]> data = parametersParser.parseParameters(s);
             Rectangle rectangle = ShapeFactory.createRectangle(data);
 
-            Warehouse warehouse = Warehouse.getInstance();
-            warehouse.putProperties(rectangle.getRectangleId(), 10, 10);
+            RectangleWarehouse rectangleWarehouse = RectangleWarehouse.getInstance();
+            rectangleWarehouse.putProperties(rectangle.getRectangleId(), 10, 10);
 
             RectangleObserver observer = new RectangleObserverImpl();
             rectangle.attach(observer);

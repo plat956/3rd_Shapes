@@ -5,7 +5,7 @@ import by.latushko.training.observer.RectangleEvent;
 import by.latushko.training.observer.RectangleObserver;
 import by.latushko.training.service.RectangleService;
 import by.latushko.training.service.impl.RectangleServiceImpl;
-import by.latushko.training.warehouse.Warehouse;
+import by.latushko.training.warehouse.RectangleWarehouse;
 
 public class RectangleObserverImpl implements RectangleObserver {
     @Override
@@ -17,7 +17,7 @@ public class RectangleObserverImpl implements RectangleObserver {
         double square = rectangleService.calculateSquare(rectangle);
         double perimeter = rectangleService.calculatePerimeter(rectangle);
 
-        Warehouse warehouse = Warehouse.getInstance();
-        warehouse.updateProperties(rectangleId, square, perimeter);
+        RectangleWarehouse rectangleWarehouse = RectangleWarehouse.getInstance();
+        rectangleWarehouse.updateProperties(rectangleId, square, perimeter);
     }
 }

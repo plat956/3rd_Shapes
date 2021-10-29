@@ -4,17 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class Warehouse {
-    private static Warehouse instance;
+public class RectangleWarehouse {
+    private static RectangleWarehouse instance;
     private final Map<Long, RectangleProperties> storage;
 
-    private Warehouse() {
+    private RectangleWarehouse() {
         storage = new HashMap<>();
     }
 
-    public static Warehouse getInstance() {
+    public static RectangleWarehouse getInstance() {
         if(instance == null) {
-            instance = new Warehouse();
+            instance = new RectangleWarehouse();
         }
         return instance;
     }

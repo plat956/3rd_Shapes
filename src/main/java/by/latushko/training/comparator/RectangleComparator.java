@@ -1,11 +1,10 @@
 package by.latushko.training.comparator;
 
 import by.latushko.training.entity.Rectangle;
-import by.latushko.training.warehouse.Warehouse;
+import by.latushko.training.warehouse.RectangleWarehouse;
 
 import java.util.Comparator;
 import java.util.function.ToDoubleFunction;
-import java.util.function.ToLongFunction;
 
 public enum RectangleComparator {
     ID,
@@ -26,10 +25,10 @@ public enum RectangleComparator {
 
             case HEIGHT -> Comparator.comparingDouble(Rectangle::getHeight);
 
-            case PERIMETER -> Comparator.comparingDouble((ToDoubleFunction<Rectangle>) r -> Warehouse.getInstance().getProperties(r.getRectangleId())
+            case PERIMETER -> Comparator.comparingDouble((ToDoubleFunction<Rectangle>) r -> RectangleWarehouse.getInstance().getProperties(r.getRectangleId())
                     .orElseThrow().getPerimeter());
 
-            case SQUARE -> Comparator.comparingDouble((ToDoubleFunction<Rectangle>) r -> Warehouse.getInstance().getProperties(r.getRectangleId())
+            case SQUARE -> Comparator.comparingDouble((ToDoubleFunction<Rectangle>) r -> RectangleWarehouse.getInstance().getProperties(r.getRectangleId())
                     .orElseThrow().getSquare());
 
             default -> Comparator.comparingLong(Rectangle::getRectangleId);
